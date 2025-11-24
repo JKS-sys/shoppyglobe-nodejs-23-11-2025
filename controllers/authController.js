@@ -1,70 +1,43 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-// Generate JWT
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN || "30d",
-  });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
 
-// @desc    Register new user
-// @route   POST /api/auth/register
-// @access  Public
-exports.register = async (req, res) => {
-  const { name, email, password } = req.body;
+exports.register = async (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password)
+    return res.status(400).json({ message: "All fields required" });
 
   try {
-    const userExists = await User.findOne({ email });
+    let user = await User.findOne({ username });
+    if (user) return res.status(400).json({ message: "User already exists" });
 
-    if (userExists) {
-      return res.status(400).json({ message: "User already exists" });
-    }
+    user = new User({ username, password });
+    await user.save();
 
-    const user = await User.create({
-      name,
-      email,
-      password,
-    });
-
-    if (user) {
-      res.status(201).json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: generateToken(user._id),
-      });
-    } else {
-      res.status(400).json({ message: "Invalid user data" });
-    }
+    res.status(201).json({ token: generateToken(user._id) });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Authenticate user & get token
-// @route   POST /api/auth/login
-// @access  Public
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
+exports.login = async (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password)
+    return res.status(400).json({ message: "All fields required" });
 
   try {
-    const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ username });
+    if (!user) return res.status(400).json({ message: "Invalid credentials" });
 
-    if (user && (await user.matchPassword(password))) {
-      res.json({
-        success: true,
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        token: generateToken(user._id),
-      });
-    } else {
-      res
-        .status(401)
-        .json({ success: false, message: "Invalid email or password" });
-    }
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch)
+      return res.status(400).json({ message: "Invalid credentials" });
+
+    res.json({ token: generateToken(user._id) });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    next(error);
   }
 };

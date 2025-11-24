@@ -7,7 +7,7 @@ const {
   removeFromCart,
 } = require("../controllers/cartController");
 const { protect } = require("../middleware/auth");
-const { handleValidationErrors } = require("../middleware/validation");
+const { validateRequest } = require("../middleware/validation");
 
 const router = express.Router();
 router.use(protect);
@@ -17,36 +17,31 @@ router.get("/", getCart);
 
 // Route to add item to cart
 router.post(
-  "/add",
+  "/",
   [
     body("productId").notEmpty().withMessage("Product ID is required"),
     body("quantity")
       .isInt({ min: 1 })
       .withMessage("Quantity must be at least 1"),
   ],
-  handleValidationErrors,
+  validateRequest,
   addToCart
 );
 
 // Route to update cart item quantity
 router.put(
-  "/update",
+  "/:itemId",
   [
     body("productId").notEmpty().withMessage("Product ID is required"),
     body("quantity")
       .isInt({ min: 1 })
       .withMessage("Quantity must be at least 1"),
   ],
-  handleValidationErrors,
+  validateRequest,
   updateCartItem
 );
 
 // Route to remove item from cart
-router.delete(
-  "/:ItemId",
-  [body("productId").notEmpty().withMessage("Product ID is required")],
-  handleValidationErrors,
-  removeFromCart
-);
+router.delete("/:itemId", removeFromCart);
 
 module.exports = router;

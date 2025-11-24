@@ -1,8 +1,5 @@
 const express = require("express");
-const {
-  getProducts,
-  getProducts,
-} = require("../controllers/productController");
+const { getProducts, getProduct } = require("../controllers/productController");
 
 const router = express.Router();
 
@@ -10,6 +7,6 @@ const router = express.Router();
 router.get("/", getProducts);
 
 // Route to get a single product by ID
-router.get("/:id", getProducts);
+router.get("/:id", getProduct);
 
 module.exports = router;

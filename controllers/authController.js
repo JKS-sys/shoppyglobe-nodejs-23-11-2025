@@ -53,15 +53,18 @@ exports.login = async (req, res) => {
 
     if (user && (await user.matchPassword(password))) {
       res.json({
+        success: true,
         _id: user._id,
         name: user.name,
         email: user.email,
         token: generateToken(user._id),
       });
     } else {
-      res.status(401).json({ message: "Invalid email or password" });
+      res
+        .status(401)
+        .json({ success: false, message: "Invalid email or password" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };

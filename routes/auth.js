@@ -17,7 +17,7 @@ router.post(
       .isLength({ min: 6 })
       .withMessage("Password must be at least 6 characters long"),
   ],
-  validateRequest, // pass as a middleware reference, no wrapper
+  validateRequest,
   register
 );
 
@@ -28,7 +28,7 @@ router.post(
     body("email").isEmail().withMessage("Please provide a valid email address"),
     body("password").notEmpty().withMessage("Password is required"),
   ],
-  validateRequest, // pass as a middleware reference, no wrapper
+  validateRequest,
   login
 );
 

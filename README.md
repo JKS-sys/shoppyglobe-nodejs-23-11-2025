@@ -1,7 +1,7 @@
 Here's the fixed README.md with corrections:
 
 ````markdown
-# 🛍️ ShoppyGlobe E-commerce Backend API
+# 🌏 ShoppyGlobe E-commerce Backend API
 
 ![Node.js](https://img.shields.io/badge/Node.js-20.19.5-green)
 ![Express](https://img.shields.io/badge/Express-5.1.0-blue)

@@ -1,6 +1,4 @@
-## 📚 Complete README.md Documentation
-
-**Create `README.md`:**
+Here's the fixed README.md with corrections:
 
 ````markdown
 # 🛍️ ShoppyGlobe E-commerce Backend API
@@ -30,8 +28,12 @@ A complete Node.js, Express, and MongoDB backend for the ShoppyGlobe e-commerce 
 - [API Documentation](#-api-documentation)
 - [Deployment](#-deployment)
 - [Screenshots](#-screenshots)
+- [Security Features](#-security-features)
+- [Scripts](#-scripts)
+- [Troubleshooting](#-troubleshooting)
 - [Contributing](#-contributing)
 - [License](#-license)
+- [Support](#-support)
 
 ## ✨ Features
 
@@ -464,7 +466,7 @@ npm start
 
 ## 📄 License
 
-This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+This project is proprietary and confidential. Unauthorized copying, modification, distribution, or use of this project in any form without explicit permission from the author is strictly prohibited.
 
 ## 👥 Contributors
 
@@ -472,7 +474,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email your-email@example.com or create an issue in the GitHub repository.
+For support, email jagadeesh_2k17@proton.me or create an issue in the GitHub repository.
 
 ---
 

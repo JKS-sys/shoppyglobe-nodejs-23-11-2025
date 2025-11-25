@@ -1,42 +1,44 @@
-const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-};
+const generateToken = (id) =>
+  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
 exports.register = async (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password)
-    return res.status(400).json({ message: "All fields required" });
-
   try {
-    let user = await User.findOne({ username });
-    if (user) return res.status(400).json({ message: "User already exists" });
+    const { name, email, password } = req.body;
+    const userExists = await User.findOne({ email });
+    if (userExists)
+      return res.status(400).json({ message: "User already exists" });
 
-    user = new User({ username, password });
-    await user.save();
+    const user = await User.create({ name, email, password });
 
-    res.status(201).json({ token: generateToken(user._id) });
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    });
   } catch (error) {
-    next(error);
+    next(error); // Pass errors to the error handler
   }
 };
 
 exports.login = async (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password)
-    return res.status(400).json({ message: "All fields required" });
-
   try {
-    const user = await User.findOne({ username });
-    if (!user) return res.status(400).json({ message: "Invalid credentials" });
-
-    const isMatch = await user.matchPassword(password);
-    if (!isMatch)
-      return res.status(400).json({ message: "Invalid credentials" });
-
-    res.json({ token: generateToken(user._id) });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email }).select("+password");
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: generateToken(user._id),
+      });
+    } else {
+      res.status(401).json({ message: "Invalid email or password" });
+    }
   } catch (error) {
     next(error);
   }

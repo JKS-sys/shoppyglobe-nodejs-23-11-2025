@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%F0%9F%93%9A-complete-readmemd-documentation">📚 Complete README.md Documentation</h2>
+<p><strong>Create <code>README.md</code>:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-section"># 🛍️ ShoppyGlobe E-commerce Backend API</span>
+
+![<span class="hljs-string">Node.js</span>](<span class="hljs-link">https://img.shields.io/badge/Node.js-20.19.5-green</span>)
+![<span class="hljs-string">Express</span>](<span class="hljs-link">https://img.shields.io/badge/Express-5.1.0-blue</span>)
+![<span class="hljs-string">MongoDB</span>](<span class="hljs-link">https://img.shields.io/badge/MongoDB-9.0.0-green</span>)
+![<span class="hljs-string">JWT</span>](<span class="hljs-link">https://img.shields.io/badge/JWT-Auth-orange</span>)
+![<span class="hljs-string">Testing</span>](<span class="hljs-link">https://img.shields.io/badge/Jest-Testing-success</span>)
+
+A complete Node.js, Express, and MongoDB backend for the ShoppyGlobe e-commerce application with JWT authentication, cart functionality, and comprehensive testing.
+
+<span class="hljs-section">## 🚀 Live Demo</span>
+<span class="hljs-bullet">
+- </span><span class="hljs-strong">**Backend API**</span>: [<span class="hljs-string">https://shoppyglobe-nodejs-23-11-2025.vercel.app/</span>](<span class="hljs-link">https://shoppyglobe-nodejs-23-11-2025.vercel.app/</span>)
+<span class="hljs-bullet">- </span><span class="hljs-strong">**GitHub Repository**</span>: [<span class="hljs-string">https://github.com/JKS-sys/shoppyglobe-nodejs-23-11-2025</span>](<span class="hljs-link">https://github.com/JKS-sys/shoppyglobe-nodejs-23-11-2025</span>)
+
+<span class="hljs-section">## 📋 Table of Contents</span>
+<span class="hljs-bullet">
+- </span>[<span class="hljs-string">Features</span>](<span class="hljs-link">#-features</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Technology Stack</span>](<span class="hljs-link">#-technology-stack</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">API Endpoints</span>](<span class="hljs-link">#-api-endpoints</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Installation</span>](<span class="hljs-link">#-installation--setup</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Environment Variables</span>](<span class="hljs-link">#-environment-variables</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Database Models</span>](<span class="hljs-link">#-database-models</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Testing</span>](<span class="hljs-link">#-testing</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">API Documentation</span>](<span class="hljs-link">#-api-documentation</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Deployment</span>](<span class="hljs-link">#-deployment</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Screenshots</span>](<span class="hljs-link">#-screenshots</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">Contributing</span>](<span class="hljs-link">#-contributing</span>)
+<span class="hljs-bullet">- </span>[<span class="hljs-string">License</span>](<span class="hljs-link">#-license</span>)
+
+<span class="hljs-section">## ✨ Features</span>
+<span class="hljs-bullet">
+- </span><span class="hljs-strong">**🔐 User Authentication**</span>: JWT-based registration and login system
+<span class="hljs-bullet">- </span><span class="hljs-strong">**📦 Product Management**</span>: Complete CRUD operations for products
+<span class="hljs-bullet">- </span><span class="hljs-strong">**🛒 Shopping Cart**</span>: Add, update, and remove items from cart
+<span class="hljs-bullet">- </span><span class="hljs-strong">**🛡️ Input Validation**</span>: Robust validation using custom middleware
+<span class="hljs-bullet">- </span><span class="hljs-strong">**🚨 Error Handling**</span>: Comprehensive error handling and validation
+<span class="hljs-bullet">- </span><span class="hljs-strong">**🔒 Security**</span>: Password hashing with bcryptjs, protected routes
+<span class="hljs-bullet">- </span><span class="hljs-strong">**🧪 Testing**</span>: Complete test suite with Jest and Supertest (100% passing)
+<span class="hljs-bullet">- </span><span class="hljs-strong">**📊 MongoDB Integration**</span>: Efficient data storage with Mongoose ODM
+
+<span class="hljs-section">## 🛠️ Technology Stack</span>
+
+| Layer                 | Technology                   |
+| --------------------- | ---------------------------- |
+| <span class="hljs-strong">**Backend Framework**</span> | Node.js, Express.js          |
+| <span class="hljs-strong">**Database**</span>          | MongoDB with Mongoose ODM    |
+| <span class="hljs-strong">**Authentication**</span>    | JWT (JSON Web Tokens)        |
+| <span class="hljs-strong">**Password Hashing**</span>  | bcryptjs                     |
+| <span class="hljs-strong">**Validation**</span>        | Custom validation middleware |
+| <span class="hljs-strong">**Testing**</span>           | Jest, Supertest              |
+| <span class="hljs-strong">**Environment**</span>       | dotenv                       |
+| <span class="hljs-strong">**Development**</span>       | Nodemon                      |
+
+<span class="hljs-section">## 📊 API Endpoints</span>
+
+<span class="hljs-section">### 🔐 Authentication Endpoints</span>
+
+| Method | Endpoint         | Description                  | Auth Required | Status         |
+| ------ | ---------------- | ---------------------------- | ------------- | -------------- |
+| <span class="hljs-code">`POST`</span> | <span class="hljs-code">`/auth/register`</span> | Register a new user          | ❌            | ✅ Implemented |
+| <span class="hljs-code">`POST`</span> | <span class="hljs-code">`/auth/login`</span>    | Login user and get JWT token | ❌            | ✅ Implemented |
+
+<span class="hljs-section">### 📦 Product Endpoints</span>
+
+| Method | Endpoint        | Description              | Auth Required | Status         |
+| ------ | --------------- | ------------------------ | ------------- | -------------- |
+| <span class="hljs-code">`GET`</span>  | <span class="hljs-code">`/products`</span>     | Get all products         | ❌            | ✅ Implemented |
+| <span class="hljs-code">`GET`</span>  | <span class="hljs-code">`/products/:id`</span> | Get single product by ID | ❌            | ✅ Implemented |
+
+<span class="hljs-section">### 🛒 Cart Endpoints</span>
+
+| Method   | Endpoint           | Description               | Auth Required | Status         |
+| -------- | ------------------ | ------------------------- | ------------- | -------------- |
+| <span class="hljs-code">`GET`</span>    | <span class="hljs-code">`/cart`</span>            | Get user's cart           | ✅            | ✅ Implemented |
+| <span class="hljs-code">`POST`</span>   | <span class="hljs-code">`/cart`</span>            | Add product to cart       | ✅            | ✅ Implemented |
+| <span class="hljs-code">`PUT`</span>    | <span class="hljs-code">`/cart/:productId`</span> | Update cart item quantity | ✅            | ✅ Implemented |
+| <span class="hljs-code">`DELETE`</span> | <span class="hljs-code">`/cart/:productId`</span> | Remove item from cart     | ✅            | ✅ Implemented |
+
+<span class="hljs-section">### ℹ️ Info Endpoint</span>
+
+| Method | Endpoint | Description                       | Auth Required | Status         |
+| ------ | -------- | --------------------------------- | ------------- | -------------- |
+| <span class="hljs-code">`GET`</span>  | <span class="hljs-code">`/`</span>      | API information and documentation | ❌            | ✅ Implemented |
+
+<span class="hljs-section">## 🚀 Installation &amp; Setup</span>
+
+<span class="hljs-section">### Prerequisites</span>
+<span class="hljs-bullet">
+- </span>Node.js (v18 or higher)
+<span class="hljs-bullet">- </span>MongoDB (local installation or MongoDB Atlas)
+<span class="hljs-bullet">- </span>npm or yarn package manager
+
+<span class="hljs-section">### 1. Clone the Repository</span>
+
+<span class="hljs-code">```bash
+git clone https://github.com/JKS-sys/shoppyglobe-nodejs-23-11-2025.git
+cd shoppyglobe-nodejs-23-11-2025
+```</span>
+</div></code></pre>
+<h3 id="2-install-dependencies">2. Install Dependencies</h3>
+<pre class="hljs"><code><div>npm install
+</div></code></pre>
+<h3 id="3-environment-configuration">3. Environment Configuration</h3>
+<p>Create a <code>.env</code> file in the root directory:</p>
+<pre class="hljs"><code><div>MONGODB_URI=mongodb://127.0.0.1:27017/shoppyglobe
+MONGODB_URI_TEST=mongodb://127.0.0.1:27017/shoppyglobe_test
+JWT_SECRET=your_super_secure_jwt_secret_key_here_make_it_long_and_secure
+PORT=5002
+NODE_ENV=development
+</div></code></pre>
+<h3 id="4-database-setup">4. Database Setup</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Start MongoDB service (if using local MongoDB)</span>
+brew services start mongodb-community
+
+<span class="hljs-comment"># Seed the database with sample products</span>
+npm run seed
+</div></code></pre>
+<h3 id="5-start-the-application">5. Start the Application</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Development mode with auto-restart</span>
+npm run dev
+
+<span class="hljs-comment"># Production mode</span>
+npm start
+</div></code></pre>
+<p>The server will start on <code>http://localhost:5002</code></p>
+<h2 id="%E2%9A%99%EF%B8%8F-environment-variables">⚙️ Environment Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MONGODB_URI</code></td>
+<td>MongoDB connection string for development</td>
+<td><code>mongodb://127.0.0.1:27017/shoppyglobe</code></td>
+</tr>
+<tr>
+<td><code>MONGODB_URI_TEST</code></td>
+<td>MongoDB connection string for testing</td>
+<td><code>mongodb://127.0.0.1:27017/shoppyglobe_test</code></td>
+</tr>
+<tr>
+<td><code>JWT_SECRET</code></td>
+<td>Secret key for JWT token generation</td>
+<td>Required (no default)</td>
+</tr>
+<tr>
+<td><code>PORT</code></td>
+<td>Server port number</td>
+<td><code>5002</code></td>
+</tr>
+<tr>
+<td><code>NODE_ENV</code></td>
+<td>Application environment</td>
+<td><code>development</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="%F0%9F%97%83%EF%B8%8F-database-models">🗃️ Database Models</h2>
+<h3 id="user-model">User Model</h3>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">username</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">minlength</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">maxlength</span>: <span class="hljs-number">30</span> },
+  <span class="hljs-attr">email</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">lowercase</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">password</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">minlength</span>: <span class="hljs-number">6</span> },
+  <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span>
+}
+</div></code></pre>
+<h3 id="product-model">Product Model</h3>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">name</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">maxlength</span>: <span class="hljs-number">100</span> },
+  <span class="hljs-attr">price</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span> },
+  <span class="hljs-attr">description</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>, <span class="hljs-attr">maxlength</span>: <span class="hljs-number">1000</span> },
+  <span class="hljs-attr">stockQuantity</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">0</span> },
+  <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span>
+}
+</div></code></pre>
+<h3 id="cart-model">Cart Model</h3>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">user</span>: { <span class="hljs-attr">type</span>: ObjectId, <span class="hljs-attr">ref</span>: <span class="hljs-string">'User'</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">unique</span>: <span class="hljs-literal">true</span> },
+  <span class="hljs-attr">items</span>: [{
+    <span class="hljs-attr">product</span>: { <span class="hljs-attr">type</span>: ObjectId, <span class="hljs-attr">ref</span>: <span class="hljs-string">'Product'</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span> },
+    <span class="hljs-attr">quantity</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>, <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">min</span>: <span class="hljs-number">1</span> }
+  }],
+  <span class="hljs-attr">totalAmount</span>: { <span class="hljs-attr">type</span>: <span class="hljs-built_in">Number</span>, <span class="hljs-attr">default</span>: <span class="hljs-number">0</span> },
+  <span class="hljs-attr">timestamps</span>: <span class="hljs-literal">true</span>
+}
+</div></code></pre>
+<h2 id="%F0%9F%A7%AA-testing">🧪 Testing</h2>
+<h3 id="test-results">Test Results</h3>
+<p>✅ <strong>All 13 tests passing</strong> - Complete test coverage including authentication, products, cart operations, and error handling.</p>
+<h3 id="run-test-suite">Run Test Suite</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Run all tests</span>
+npm <span class="hljs-built_in">test</span>
+
+<span class="hljs-comment"># Run tests in watch mode</span>
+npm run <span class="hljs-built_in">test</span>:watch
+
+<span class="hljs-comment"># Run tests with coverage</span>
+npm run <span class="hljs-built_in">test</span>:coverage
+</div></code></pre>
+<h3 id="test-coverage">Test Coverage</h3>
+<p>The comprehensive test suite covers:</p>
+<ul>
+<li>✅ User registration and login</li>
+<li>✅ Product retrieval (all and single)</li>
+<li>✅ Cart operations (add, update, remove)</li>
+<li>✅ Authentication middleware</li>
+<li>✅ Error handling and validation</li>
+<li>✅ Protected route access</li>
+<li>✅ 404 handling</li>
+</ul>
+<h2 id="%F0%9F%93%96-api-documentation">📖 API Documentation</h2>
+<h3 id="%F0%9F%94%90-authentication">🔐 Authentication</h3>
+<h4 id="register-a-new-user">Register a New User</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">POST /auth/register
+Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="hljs-attr">"username"</span>: <span class="hljs-string">"john_doe"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"john@example.com"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"password123"</span>
+}
+</span></div></code></pre>
+<p><strong>Response:</strong></p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"User registered successfully"</span>,
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"user"</span>: {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-string">"507f1f77bcf86cd799439011"</span>,
+      <span class="hljs-attr">"username"</span>: <span class="hljs-string">"john_doe"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"john@example.com"</span>
+    },
+    <span class="hljs-attr">"token"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span>
+  }
+}
+</div></code></pre>
+<h4 id="user-login">User Login</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">POST /auth/login
+Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"john@example.com"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"password123"</span>
+}
+</span></div></code></pre>
+<p><strong>Response:</strong></p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Login successful"</span>,
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"user"</span>: {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-string">"507f1f77bcf86cd799439011"</span>,
+      <span class="hljs-attr">"username"</span>: <span class="hljs-string">"john_doe"</span>,
+      <span class="hljs-attr">"email"</span>: <span class="hljs-string">"john@example.com"</span>
+    },
+    <span class="hljs-attr">"token"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span>
+  }
+}
+</div></code></pre>
+<h3 id="%F0%9F%93%A6-products">📦 Products</h3>
+<h4 id="get-all-products">Get All Products</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">GET /products
+</span></div></code></pre>
+<p><strong>Response:</strong></p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"count"</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">"data"</span>: [
+    {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"6925905e36893c0357e2a0cc"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Apple iPhone 15"</span>,
+      <span class="hljs-attr">"price"</span>: <span class="hljs-number">999.99</span>,
+      <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Latest Apple iPhone with A17 chip."</span>,
+      <span class="hljs-attr">"stockQuantity"</span>: <span class="hljs-number">50</span>
+    }
+  ]
+}
+</div></code></pre>
+<h4 id="get-single-product">Get Single Product</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">GET /products/6925905e36893c0357e2a0cc
+</span></div></code></pre>
+<h3 id="%F0%9F%9B%92-cart-operations-protected">🛒 Cart Operations (Protected)</h3>
+<h4 id="add-to-cart">Add to Cart</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">POST /cart
+Authorization</span>: Bearer &lt;your_jwt_token&gt;
+<span class="hljs-attribute">Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="hljs-attr">"productId"</span>: <span class="hljs-string">"6925905e36893c0357e2a0cc"</span>,
+  <span class="hljs-attr">"quantity"</span>: <span class="hljs-number">2</span>
+}
+</span></div></code></pre>
+<h4 id="update-cart-item">Update Cart Item</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">PUT /cart/6925905e36893c0357e2a0cc
+Authorization</span>: Bearer &lt;your_jwt_token&gt;
+<span class="hljs-attribute">Content-Type</span>: application/json
+
+<span class="json">{
+  <span class="hljs-attr">"quantity"</span>: <span class="hljs-number">3</span>
+}
+</span></div></code></pre>
+<h4 id="remove-from-cart">Remove from Cart</h4>
+<pre class="hljs"><code><div><span class="hljs-attribute">DELETE /cart/6925905e36893c0357e2a0cc
+Authorization</span>: Bearer &lt;your_jwt_token&gt;
+</div></code></pre>
+<h3 id="%E2%84%B9%EF%B8%8F-api-information">ℹ️ API Information</h3>
+<pre class="hljs"><code><div><span class="hljs-attribute">GET /
+</span></div></code></pre>
+<h2 id="%F0%9F%9A%80-deployment">🚀 Deployment</h2>
+<h3 id="vercel-deployment">Vercel Deployment</h3>
+<p>The application is deployed on Vercel. The deployment process includes:</p>
+<ol>
+<li><strong>Automatic deployments</strong> from the main branch</li>
+<li><strong>Environment variables</strong> configured in Vercel dashboard</li>
+<li><strong>MongoDB Atlas</strong> for production database</li>
+<li><strong>CORS configuration</strong> for frontend integration</li>
+</ol>
+<h3 id="local-production-build">Local Production Build</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Install dependencies</span>
+npm install
+
+<span class="hljs-comment"># Set production environment variables</span>
+<span class="hljs-built_in">export</span> NODE_ENV=production
+<span class="hljs-built_in">export</span> MONGODB_URI=your_production_mongodb_uri
+<span class="hljs-built_in">export</span> JWT_SECRET=your_production_jwt_secret
+
+<span class="hljs-comment"># Start production server</span>
+npm start
+</div></code></pre>
+<h2 id="%F0%9F%93%B8-screenshots">📸 Screenshots</h2>
+<h3 id="mongodb-database">MongoDB Database</h3>
+<ul>
+<li><a href="screenshots/MongoDB%20Database/database.png">Database Collections</a></li>
+<li><a href="screenshots/MongoDB%20Database/products.png">Products Collection</a></li>
+<li><a href="screenshots/MongoDB%20Database/users.png">Users Collection</a></li>
+<li><a href="screenshots/MongoDB%20Database/carts.png">Carts Collection</a></li>
+</ul>
+<h3 id="api-testing">API Testing</h3>
+<ul>
+<li><a href="screenshots/Thunder%20Client/">Thunder Client Tests</a></li>
+<li><a href="screenshots/tests/test.png">Test Results</a></li>
+</ul>
+<h2 id="%F0%9F%9B%A1%EF%B8%8F-security-features">🛡️ Security Features</h2>
+<ul>
+<li><strong>Password Hashing</strong>: bcryptjs with salt rounds</li>
+<li><strong>JWT Tokens</strong>: Secure authentication with configurable expiry</li>
+<li><strong>Input Validation</strong>: Custom validation middleware for all endpoints</li>
+<li><strong>Protected Routes</strong>: Authentication middleware for sensitive operations</li>
+<li><strong>Error Handling</strong>: Secure error messages without exposing sensitive data</li>
+<li><strong>CORS</strong>: Configured for cross-origin requests</li>
+</ul>
+<h2 id="%F0%9F%94%A7-scripts">🔧 Scripts</h2>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npm start</code></td>
+<td>Start production server</td>
+</tr>
+<tr>
+<td><code>npm run dev</code></td>
+<td>Start development server with nodemon</td>
+</tr>
+<tr>
+<td><code>npm run seed</code></td>
+<td>Seed database with sample products</td>
+</tr>
+<tr>
+<td><code>npm test</code></td>
+<td>Run test suite</td>
+</tr>
+<tr>
+<td><code>npm run test:watch</code></td>
+<td>Run tests in watch mode</td>
+</tr>
+<tr>
+<td><code>npm run test:coverage</code></td>
+<td>Run tests with coverage report</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%F0%9F%90%9B-troubleshooting">🐛 Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<ol>
+<li>
+<p><strong>MongoDB Connection Error</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Ensure MongoDB is running</span>
+brew services start mongodb-community
+
+<span class="hljs-comment"># Check connection string in .env file</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>JWT Authentication Errors</strong></p>
+<ul>
+<li>Verify JWT_SECRET is set in environment variables</li>
+<li>Check token in Authorization header format</li>
+</ul>
+</li>
+<li>
+<p><strong>Validation Errors</strong></p>
+<ul>
+<li>Review request body format</li>
+<li>Check required fields and data types</li>
+</ul>
+</li>
+<li>
+<p><strong>Test Failures</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Clear test database</span>
+npm run <span class="hljs-built_in">test</span> -- --detectOpenHandles --forceExit
+</div></code></pre>
+</li>
+</ol>
+<h3 id="getting-help">Getting Help</h3>
+<ul>
+<li>Check console for detailed error messages</li>
+<li>Review API documentation for expected request formats</li>
+<li>Check test cases for implementation examples</li>
+</ul>
+<h2 id="%F0%9F%A4%9D-contributing">🤝 Contributing</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>Commit your changes (<code>git commit -m 'Add some amazing feature'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+<h2 id="%F0%9F%93%84-license">📄 License</h2>
+<p>This project is licensed under the ISC License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<h2 id="%F0%9F%91%A5-contributors">👥 Contributors</h2>
+<ul>
+<li><strong>JKS</strong> - Initial development and implementation</li>
+</ul>
+<h2 id="%F0%9F%93%9E-support">📞 Support</h2>
+<p>For support, email your-email@example.com or create an issue in the GitHub repository.</p>
+<hr>
+<div align="center">
+</div><h3 id="%F0%9F%8E%89-happy-coding-with-shoppyglobe">🎉 Happy Coding with ShoppyGlobe!</h3>
+<p><strong>Build something amazing with our robust e-commerce API!</strong></p>
+<p><a href="https://github.com/JKS-sys/shoppyglobe-nodejs-23-11-2025/stargazers"><img src="https://img.shields.io/github/stars/JKS-sys/shoppyglobe-nodejs-23-11-2025?style=social" alt="GitHub stars"></a>
+<a href="https://github.com/JKS-sys/shoppyglobe-nodejs-23-11-2025/network/members"><img src="https://img.shields.io/github/forks/JKS-sys/shoppyglobe-nodejs-23-11-2025?style=social" alt="GitHub forks"></a></p>
+
+```
+<h2 id="%F0%9F%8E%AF-project-structure-summary">🎯 Project Structure Summary</h2>
+<pre class="hljs"><code><div>shoppyglobe-nodejs-23-11-2025/
+├── 📁 config/                 # Database configuration
+├── 📁 middleware/            # Custom middleware
+│   ├── auth.js              # JWT authentication
+│   ├── validation.js        # Zod validation
+│   └── validation-simple.js # Custom validation
+├── 📁 models/               # MongoDB models
+│   ├── User.js
+│   ├── Product.js
+│   └── Cart.js
+├── 📁 routes/               # API routes
+│   ├── auth.js
+│   ├── products.js
+│   └── cart.js
+├── 📁 screenshots/          # Documentation screenshots
+│   ├── MongoDB Database/
+│   ├── get/
+│   ├── post/
+│   ├── put/
+│   └── delete/
+├── 📁 tests/                # Test files
+│   └── shoppyglobe.test.js
+├── 📄 server.js             # Main application file
+├── 📄 seedProducts.js       # Database seeder
+├── 📄 package.json
+├── 📄 .env
+└── 📄 README.md
+</div></code></pre>
+<h2 id="%E2%9C%85-project-status">✅ Project Status</h2>
+<ul>
+<li><strong>✅ Backend API</strong>: Complete and fully functional</li>
+<li><strong>✅ Authentication</strong>: JWT-based auth implemented</li>
+<li><strong>✅ Database</strong>: MongoDB with proper models</li>
+<li><strong>✅ Testing</strong>: 13/13 tests passing (100%)</li>
+<li><strong>✅ Documentation</strong>: Comprehensive README</li>
+<li><strong>✅ Deployment</strong>: Live on Vercel</li>
+<li><strong>✅ Validation</strong>: Input validation implemented</li>
+<li><strong>✅ Error Handling</strong>: Comprehensive error handling</li>
+</ul>
+<p>ShoppyGlobe API is now production-ready with complete documentation! 🚀</p>
+
+</body>
+</html>

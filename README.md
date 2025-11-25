@@ -1,6 +1,3 @@
-Here's the fixed README.md with corrections:
-
-````markdown
 # 🌏 ShoppyGlobe E-commerce Backend API
 
 ![Node.js](https://img.shields.io/badge/Node.js-20.19.5-green)
@@ -104,7 +101,6 @@ A complete Node.js, Express, and MongoDB backend for the ShoppyGlobe e-commerce 
 git clone https://github.com/JKS-sys/shoppyglobe-nodejs-23-11-2025.git
 cd shoppyglobe-nodejs-23-11-2025
 ```
-````
 
 ### 2. Install Dependencies
 
